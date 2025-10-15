@@ -22,12 +22,25 @@ No tag found                 0.0.0-SNAPSHOT
 ```
 
 ### ⚙️ Usage in build.gradle.kts
-#### 1️⃣ Include the code
+#### 1️⃣ Include the unit
 
 Place the file under your Gradle source tree, e.g.:
 
-`buildSrc/src/main/kotlin/net/agl/gradle/GitVersion.kt`
+`buildSrc/build.gradle.kts`
+```kotlin
+plugins {
+    `kotlin-dsl`
+}
 
+repositories {
+    maven { url = uri("https://nexus.ag-l.net/repository/maven-releases/") }
+    mavenCentral()
+}
+
+dependencies {
+    implementation("net.agl.gradle:version-from-git:1.0.0")
+}
+```
 
 Gradle automatically compiles everything in buildSrc and makes it available to the main build scripts.
 
@@ -36,11 +49,11 @@ Gradle automatically compiles everything in buildSrc and makes it available to t
 import net.agl.gradle.versionFromGit
 
 version = versionFromGit(
-  gitRoot = project.rootDir.absolutePath,
-  dirtyDetect = true,
-  dirtyHash = true,
-  commitsNo = true,
-  fallbackVersion = "0.0.0-SNAPSHOT"
+    gitRoot = project.rootDir.absolutePath,
+    dirtyDetect = true,
+    dirtyHash = true,
+    commitsNo = true,
+    fallbackVersion = "0.0.0-SNAPSHOT"
 )
 ```
 #### 3️⃣ Run a build
