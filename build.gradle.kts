@@ -1,12 +1,12 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
+    kotlin("jvm") version "2.2.20"
     id("java-library")
     id("idea")
     id("maven-publish")
 }
 
 group = "net.agl.gradle"
-version = "1.0.0"
+version = "1.1.0-SNAPSHOT"
 
 java {
     toolchain {
