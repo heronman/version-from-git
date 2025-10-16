@@ -76,14 +76,16 @@ class VersionTest {
         assertFalse(Version.parse("1.2.3") < Version.parse("v1.2.3"))
 
         assert(Version.parse("0") > Version.parse(""))
+        assert(Version.parse("1.2.0") > Version.parse("1.2"))
 
         assert(Version.parse("1.2.3") < Version.parse("1.2.4"))
         assert(Version.parse("1.2.3") < Version.parse("1.3.3"))
         assert(Version.parse("1.2.3") < Version.parse("2.2.3"))
         assert(Version.parse("1.2.3") < Version.parse("1.2.3-RELEASE"))
         assert(Version.parse("1.2.3") > Version.parse("1.2.3-SNAPSHOT"))
+        assert(Version.parse("1.2.3-RELEASE") > Version.parse("1.2.3-SNAPSHOT"))
         assert(Version.parse("1.2.3") > Version.parse("1.2.3-FOO"))
-        assert(Version.parse("1.2.3-SNAPSHOT1") < Version.parse("1.2.3-SNAPSHOT2"))
+        assert(Version.parse("1.2.3-ABC") < Version.parse("1.2.3-ABD"))
     }
 
 }
