@@ -8,6 +8,10 @@ plugins {
 group = "net.agl.gradle"
 version = "1.1.0-SNAPSHOT"
 
+kotlin {
+    jvmToolchain(17)
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -25,6 +29,8 @@ val mockitoAgent = configurations.create("mockitoAgent")
 
 dependencies {
     implementation("org.eclipse.jgit:org.eclipse.jgit:7.4.0.202509020913-r")
+    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
 }
 
 kotlin {
@@ -60,4 +66,8 @@ publishing {
             }
         }
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
